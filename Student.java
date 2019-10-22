@@ -9,13 +9,13 @@ public class Student {
     private String csScore;
 
     // contsructor
-    public Student(String name, int gradeLevel) {
+    public Student(String name, int gradeLevel, String mathScore, String englishScore, String csScore) {
         this.name = name;
         this.gradeLevel = gradeLevel;
 
-        this.mathScore = "F";
-        this.englishScore = "F";
-        this.csScore = "F";
+        this.mathScore = mathScore;
+        this.englishScore = englishScore;
+        this.csScore = csScore;
         // ? :/... :)
     }
 
@@ -43,13 +43,22 @@ public class Student {
     
     // calculate gpa
     public double calculateGPA() {
-        int gpa = 0;
+        double gpa = 0;
         System.out.println("Calculating GPA...");
-        if (mathScore.equals("F")) gpa += 0;
-        if (englishScore.equals("F")) gpa += 0;
-        if (csScore.equals("F")) gpa += 0;
+        int mathGrade = gradeValue(mathScore);
+        int englishGrade = gradeValue(englishScore);
+        int csGrade = gradeValue(csScore);
+        gpa = mathGrade + englishGrade + csGrade;
         gpa = gpa / 3;
         return gpa;
+    }
+    private int gradeValue(String grade) {
+        if (grade.equals("F")) return 0;
+        if (grade.equals("D")) return 1;
+        if (grade.equals("C")) return 2;
+        if (grade.equals("B")) return 3;
+        if (grade.equals("A")) return 4;
+        return 0;
     }
 
 }
